@@ -13,9 +13,24 @@
 </head>
 
 <body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <form onsubmit="app.controllers.JeopardyController.search(event)">
+                    <div class="form-group-row">
+                        <input type="text" class="form-control" name="query" placeholder="Search Term">
+                        <button class="btn btn-outline-success mt-1 form-control" type="submit">Search</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="jeopardy" class="row">
 
+        </div>
+    </div>
 
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"
+        integrity="sha256-XmdRbTre/3RulhYk/cOBUMpYlaAp2Rpo/s556u0OIKk=" crossorigin="anonymous"></script>
     <script src=" https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"
         integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous">
         </script>
