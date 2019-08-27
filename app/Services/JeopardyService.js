@@ -1,13 +1,13 @@
-import Jeopardy from "../Models/Jeopardy.js";
+import Song from "../Models/Jeopardy.js";
 
 //Private
 let _state = {
-    jeopardy: []
+    songs: []
 }
 
 //NOTE methods to run when a given property in state changes
 let _subscribers = {
-    jeopardy: []
+    songs: []
 }
 
 function _setState(propName, data) {
@@ -18,23 +18,24 @@ function _setState(propName, data) {
 }
 
 //Public
-export default class JeopardyService {
-    //NOTE adds the subscriber function to the array based on the property it is watching
-
-    get Jeopardy() {
-        return _state.jeopardy
+export default class ItunesService {
+    get Songs() {
+        return _state.songs
     }
 
+
+    //NOTE adds the subscriber function to the array based on the property it is watching
     addSubscriber(propName, fn) {
         _subscribers[propName].push(fn)
     }
 
-    getJeopardyByQuery(query) {
-        let url = "http://jservice.io/api/clues" + query;
+    getMusicByQuery(query) {
+        var url = 'https://pokeapi.co/api/v2/' + query;
+        // @ts-ignore
         $.getJSON(url)
             .then(res => {
-                let results = res.results.map(rawData => new Jeopardy(rawData))
-                _setState("jeopardy", results)
+                let results = res.results.map(rawData => new Song(rawData))
+                _setState('songs', results)
             })
             .catch(err => console.log(err))
     }

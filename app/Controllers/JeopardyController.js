@@ -1,28 +1,30 @@
-import JeopardyService from "../Services/JeopardyService.js";
+import ItunesService from "../Services/JeopardyService.js";
 
 //Private
-let _JeopardyService = new JeopardyService()
+let _itunesService = new ItunesService()
+
 function _draw() {
-    let elem = document.getElementById("jeopardy")
-    let jeopardy = _JeopardyService.Jeopardy
-    let template = "<ul>"
-    jeopardy.forEach(j => {
-        template += j.Template
+    let elem = document.getElementById('songs')
+    let songs = _itunesService.Songs
+    let template = '<ul>'
+    songs.forEach(s => {
+        template += s.Template
     })
-    elem.innerHTML = template + "</ul>"
+    elem.innerHTML = template + '</ul>'
 }
 
 //Public
-export default class JeopardyController {
+export default class ItunesController {
     constructor() {
         //NOTE Register all subscribers
-        _JeopardyService.addSubscriber("jeopardy", _draw)
+        _itunesService.addSubscriber("songs", _draw)
 
         //NOTE Retrieve data
-        _JeopardyService.getJeopardyByQuery("history")
+        _itunesService.getMusicByQuery("category")
     }
+
     search(e) {
         e.preventDefault();
-        _JeopardyService.getJeopardyByQuery(e.target.query.value)
+        _itunesService.getMusicByQuery(e.target.query.value)
     }
 }
